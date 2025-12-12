@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script>
+            let output = document.getElementById("output");
+
+            let customer = {
+                "custNo": 6,
+                "custName": "M2M Software Services",
+                "country": "India"
+            }
+
+            let options = {
+                method: 'POST',
+                headers: {
+                    'Content=Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(customer)
+            }
+
+            let URL = " Url spacing";
+
+            fetch(URL, options)
+                .then(res => res.text())
+                .then(res => {
+                    output.innerHTML += "The data added is:" + res;
+                }).catch(err => {
+                    output.innerHTML += "The error returned from the API is :" + JSON.stringify(err);
+                })
+        </script>
+    </head>
+</html>

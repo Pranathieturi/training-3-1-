@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <div id = "output"> </div>
+        <script>
+            let output = document.getElementById("output");
+            let options = {
+                method: 'GET' ,
+            }
+            let URL = " Url spacing";
+
+            fetch(URL, options)
+                .then(res => res.json())
+                .then(res => {
+                    output.innerHTML += "The data returned from the API is - " + JSON.stringify(res);
+                })
+                .catch(err => {
+                    output.innerHTML += "The error returned from the API is - " + JSON.stringify(err);
+                })
+        </script>
+    </head>
+</html>

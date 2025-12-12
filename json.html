@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display JSON</title>
+</head>
+<body>
+    <h2>Student Information (from JSON)</h2>
+    <div id="output"></div>
+
+    <script>
+        const json = `[{
+            "name": "Pranathi",
+            "age": 19,
+            "qualification": "Btech",
+            "StudentAt": "Malla Reddy University",
+            "skills": ["javascript", "HTML", "CSS", "Python", "Java"]
+        }]`;
+
+        const object = JSON.parse(json);
+        document.getElementById("output").innerHTML = 
+            "<pre>" + JSON.stringify(object[0], null, 2) + "</pre>";
+    </script>
+</body>
+</html>

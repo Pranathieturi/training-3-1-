@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="04.07task1.css" />
+</head>
+<body>
+  <h2>Student Management System </h2>
+
+  <!-- TAB BUTTONS -->
+  <div class="tab-buttons">
+    <button onclick="showTab('addTab')">Add</button>
+    <button onclick="showTab('searchTab')">Search</button>
+    <button onclick="showTab('updateTab')">Update</button>
+    <button onclick="showTab('deleteTab')">Delete</button>
+    <button onclick="displayAllStudents()">Display All</button>
+  </div>
+
+  <!-- ADD STUDENT TAB -->
+  <div id="addTab" class="tab-content">
+    <form id="addForm">
+      <input type="text" id="addName" placeholder="Name" required />
+      <input type="number" id="addAge" placeholder="Age" required />
+      <input type="text" id="addCourse" placeholder="Course" required />
+      <button type="submit">Add Student</button>
+    </form>
+  </div>
+
+  <!-- SEARCH STUDENT TAB -->
+  <div id="searchTab" class="tab-content">
+    <input type="number" id="searchId" placeholder="Enter ID to Search" />
+    <button onclick="searchStudent()">Search</button>
+  </div>
+
+  <!-- UPDATE STUDENT TAB -->
+  <div id="updateTab" class="tab-content">
+    <input type="number" id="updateId" placeholder="Enter ID to Update" />
+    <input type="text" id="updateName" placeholder="New Name" />
+    <input type="number" id="updateAge" placeholder="New Age" />
+    <input type="text" id="updateCourse" placeholder="New Course" />
+    <button onclick="updateStudent()">Update</button>
+  </div>
+
+  <!-- DELETE STUDENT TAB -->
+  <div id="deleteTab" class="tab-content">
+    <input type="number" id="deleteId" placeholder="Enter ID to Delete" />
+    <button onclick="deleteStudent()">Delete</button>
+  </div>
+
+  <!-- OUTPUT AREA -->
+  <div id="output"></div>
+
+  <script src="04.07--task1.js"></script>
+</body>
+</html>

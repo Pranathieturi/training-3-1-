@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #ffffff;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.intro h1 {
+    font-size: 28px;
+    margin: 20px 0 10px;
+}
+
+.intro h1 span {
+    color: #0048ff;
+}
+
+.intro p {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.social-icons a {
+    margin: 0 8px;
+    color: #333;
+    font-size: 18px;
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#skills h2,
+#work h2,
+#about h2,
+#contact h2 {
+    font-size: 36px;
+    color: #e9f5f9;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.skills-columns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.skills-columns ul {
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #2200ff;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.cta {
+    background: #4CAF50;
+}
+
+.work-screenshot img {
+    max-width: 90%;
+    height: auto;
+    border: 2px solid #cccccc;
+    margin: 20px 0;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.profile-pic {
+    width: 120px;
+    border-radius: 30%;
+    margin-bottom: 10px;
+}
+
+footer {
+    background: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}

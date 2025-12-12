@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reddy's Family Tree</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1511988617509-a57c8a288659') center/cover no-repeat fixed;
+      min-height: 100vh;
+      padding: 2rem;
+      color: #333;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .family-tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .generation {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .member {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+      min-width: 200px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(2px);
+      z-index: 2;
+    }
+
+    .member:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .member-container {
+      position: relative;
+      z-index: 3;
+    }
+
+    .member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 4px solid #3c7ee7;
+      transition: all 0.3s;
+      display: block;
+    }
+
+    .member:hover img {
+      transform: scale(1.1);
+      border-color: #2b55c0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .member h3 {
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+      transition: color 0.3s;
+      font-weight: 600;
+    }
+
+    .member:hover h3 {
+      color: #3c7be7;
+    }
+
+    .member p.relation {
+      color: #7f8c8d;
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .member-info {
+      position: absolute;
+      width: 300px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      bottom: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .member-info::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 8px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+    }
+
+    .member-container:hover .member-info {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .member-info h4 {
+      color: #3c45e7;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid #4a4242;
+      padding-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .member-info p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .connector {
+      position: absolute;
+      background: #3c78e7;
+    }
+
+    .vertical-connector {
+      width: 3px;
+      height: 2.5rem;
+      bottom: -2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .horizontal-connector {
+      height: 3px;
+      width: 2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .horizontal-connector.left {
+      right: 100%;
+    }
+
+    .horizontal-connector.right {
+      left: 100%;
+    }
+
+    .couple {
+      display: flex;
+      position: relative;
+      gap: 1rem;
+    }
+
+    .couple::after {
+      content: '';
+      position: absolute;
+      width: calc(100% - 2rem);
+      height: 3px;
+      background: #3c6de7;
+      bottom: -1.5rem;
+      left: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .generation {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .couple {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .horizontal-connector {
+        display: none;
+      }
+
+      .vertical-connector {
+        height: 1.5rem;
+        bottom: -1.5rem;
+      }
+
+      .member-info {
+        width: 240px;
+      }
+
+      .couple::after {
+        width: 3px;
+        height: 2rem;
+        left: 50%;
+        bottom: -1rem;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Reddy's Family Tree</h1>
+  <br>
+  <br>
+  <br>
+
+  <div class="family-tree">
+    <!-- Grandparents -->
+    <div class="generation">
+      <div class="member-container">
+        <div class="member">
+          <img src="C:\Users\gundr\OneDrive\Desktop\training\IMAGES\n.jpg">
+          <h3>Satyanarayana </h3>
+          <p class="relation">Grandfather</p>
+          <div class="connector vertical-connector"></div>
+        </div>
+        <div class="member-info">
+          <h4>About Satyanarayana</h4>
+          <p> He was a kind and wise man who guided our family with love. His values and stories continue to inspire us every day. </p>
+        </div>
+      </div>
+      <div class="member-container">
+        <div class="member">
+          <img src="C:\Users\gundr\OneDrive\Desktop\training\IMAGES\gf.jpg">
+          <h3>Aruna </h3>
+          <p class="relation">Grandmother</p>
+          <div class="connector vertical-connector"></div>
+        </div>
+        <div class="member-info">
+          <h4>About Aruna</h4>
+          <p> She was a gentle and caring soul who held the family together. Her love, warmth, and traditions live on in our hearts.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parents -->
+    <div class="generation">
+      <div class="couple">
+        <div class="member-container">
+          <div class="member">
+            <img src="C:\Users\prana\OneDrive\Pictures\pappa.jpg">
+            <h3>Balaji Srinivas</h3>
+            <p class="relation">Father</p>
+            <div class="connector vertical-connector"></div>
+            <div class="connector horizontal-connector right"></div>
+          </div>
+          <div class="member-info">
+            <h4>About Balaji Srinivas</h4>
+            <p>He is our greatest strength and silent protector. With his love and hard work, he built a world of comfort for us. His smile, guidance, and sacrifices shape our every step.</p>
+          </div>
+        </div>
+        <div class="member-container">
+          <div class="member">
+            <img src="C:\Users\gundr\OneDrive\Desktop\training\IMAGES\mm.jpg">
+            <h3>Venkata Deepthi</h3>
+            <p class="relation">Mother</p>
+            <div class="connector vertical-connector"></div>
+            <div class="connector horizontal-connector left"></div>
+          </div>
+          <div class="member-info">
+            <h4>About Venkata Deepthi</h4>
+            <p>She balances work and home with endless grace and strength. Her love never tires, even after the busiest days. A true inspiration, she shows us what dedication and care truly mean.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Children -->
+    <!-- Brother -->
+<div class="member-container">
+  <div class="member" onclick="toggleTomJerry()">
+    <img src="C:\Users\prana\OneDrive\Pictures\chintu.jpg">
+    <h3>Niyati</h3>
+    <p class="relation">Younger Sister</p>
+  </div>
+  <div class="member-info">
+    <h4>About Niyati</h4>
+    <p>She’s the little spark that fills our home with laughter and mischief. Her endless questions and playful pranks make every day brighter. Though she’s naughty, her love is pure and her smile is priceless.</p>
+  </div>
+  <!-- Tom and Jerry image -->
+  <div id="tomJerry" style="display: none; margin-top: 1rem; text-align: center;">
+    <img src="C:\Users\gundr\OneDrive\Desktop\training\IMAGES\tj.jpg" style="max-width: 300px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+  </div>
+</div>
+
+      <div class="member-container">
+        <div class="member">
+          <img src="C:\Users\gundr\OneDrive\Desktop\training\IMAGES\me.jpg">
+          <h3>Eturi Pranathi</h3>
+          <p class="relation">You</p>
+        </div>
+        <div class="member-info">
+          <h4>About You</h4>
+          <p>I’m a curious soul with a kind heart and big dreams. I love learning new things and spreading joy wherever I go. With my family’s love and support, I’m growing into the best version of myself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  function toggleTomJerry() {
+    const img = document.getElementById("tomJerry");
+    img.style.display = img.style.display === "none" ? "block" : "none";
+  }
+</script>
+<div style="text-align: center; margin-top: 2rem;">
+  <button 
+    onclick="openMap()" 
+    style="
+      background-color: #3c78e7; 
+      color: white; 
+      padding: 0.75rem 1.5rem; 
+      font-size: 1rem; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer;
+      transition: background 0.3s ease;"
+    onmouseover="this.style.backgroundColor='#c0392b'"
+    onmouseout="this.style.backgroundColor='#e74c3c'"
+  >
+    📍 View My Location on Map
+  </button>
+</div>
+<script>
+  function openMap() {
+    const address = encodeURIComponent("1-98, Peddarajupeta, Cherial Mandal, Siddipet, Telangana");
+    const url = "https://www.google.com/maps/place/SRI+KAMAKSHI+RESIDENCY/@17.5600464,78.437403,830m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bcb8ff4f986d967:0x9c4b6681ad9fc0b1!8m2!3d17.5600464!4d78.437403!16s%2Fg%2F11rk7396w7?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D";
+    window.open(url, '_blank');
+  }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elite Moments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1> Elite Moments </h1>
+      <h3> Crafting Unforgettable Memories</h3>
+      <nav>
+        <ul>
+          <li><a href="#event-types">Occasions</a></li>
+          <li><a href="#past-events">Previous Events</a></li>
+          <li><a href="#booking">Plan Your Event</a></li>
+          <li><a href="#designs">Designs & Decorations</a></li>
+          <li><a href="#menus-music">Menu & Music</a></li>
+          <li><a href="#rates-contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="event-types" class="card">
+      <h2>Events We Manage</h2>
+      <ul>
+        <li>Weddings</li>
+        <li>Corporate Events</li>
+        <li>Birthday Parties</li>
+        <li>Traditional Indian Ceremonies</li>
+        <li>Concerts & Festivals</li>
+        <li>Product Launches</li>
+        <li>Charity Fundraisers</li>
+        <li>Conferences & Seminars</li>
+        <li>Business Meet-up</li>
+      </ul>
+    </section>
+
+    <section id="past-events" class="card">
+      <h2>Previous Events</h2>
+      <div class="gallery-grid">
+        <img src="C:\Users\prana\OneDrive\Desktop\Training\images\wed.1280" alt="Past Wedding Event" />
+        <img src="C:\Users\prana\OneDrive\Desktop\Training\images\corporate.jpg" alt="Corporate Gala" />
+        <img src="C:\Users\prana\OneDrive\Desktop\Training\images\birthday.jpg" alt="Birthday Party" />
+        <img src="C:\Users\prana\OneDrive\Desktop\Training\images\concert.jpg"alt="Concert Stage" />
+        <img src="C:\Users\prana\OneDrive\Desktop\Training\images\conference.jpg" alt="Conference" />
+        <video controls poster="https://placehold.co/300x200/ffc0cb/fff?text=Event+Highlight">
+          <source src="C:\Users\prana\OneDrive\Desktop\Training\wedding clip.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section id="booking" class="card">
+      <h2>Plan Your Event</h2>
+      <form id="booking-form">
+        <label for="customer-name">Your Name:</label>
+        <input type="text" id="customer-name" placeholder="Full Name" required />
+
+        <label for="booking-event-type">Event Type:</label>
+        <select id="booking-event-type" required>
+          <option value="" disabled selected>Select event type</option>
+          <option>Wedding</option>
+          <option>Corporate Event</option>
+          <option>Indian Traditional Ceremonies</option>
+          <option>Birthday Party</option>
+          <option>Concert</option>
+          <option>Other</option>
+        </select>
+
+        <label for="bride-groom-names">Bride/Groom Names:</label>
+        <input type="text" id="bride-groom-names" placeholder="Name(s) for weddings" />
+
+        <label for="booking-date">Event Date:</label>
+        <input type="date" id="booking-date" required />
+
+        <label for="guest-count">Number of Guests:</label>
+        <input type="number" id="guest-count" min="1" max="1000" placeholder="Approximate guests" required />
+
+        <label for="payment-option">Payment Option:</label>
+        <select id="payment-option" required>
+          <option value="" disabled selected>Select payment method</option>
+          <option>Credit Card</option>
+          <option>PayPal</option>
+          <option>Bank Transfer</option>
+          <option>Cash on Event</option>
+        </select>
+
+        <button type="submit">Submit Booking Request</button>
+      </form>
+      <p id="booking-response"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2023 Event Management. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

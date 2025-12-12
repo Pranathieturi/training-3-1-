@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <script>
+            const student = [{
+                name: "Pranathi",
+                age: 19,
+                skills: ["HTML", "CSS", "Java", "Javascript", "DSA"]
+            }];
+
+            const jsonString = JSON.stringify(student);
+            console.log(jsonString);
+
+            const parsedObject = JSON.parse(jsonString);
+            console.log(parsedObject.name);
+        </script>
+    </body>
+</html>

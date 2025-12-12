@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Map - CRUD Operations</title>
+</head>
+<body>
+
+  <h2>All Students</h2>
+  <div id="allStudents"></div>
+
+  <h2>Operations</h2>
+  <button onclick="searchStudent()">Search by ID</button>
+  <button onclick="updateStudent()">Update by ID</button>
+  <button onclick="deleteStudent()">Delete by ID</button>
+  <button onclick="addStudent()">Add New Student</button>
+
+  <div id="searchResult"></div>
+
+  <script>
+    const studentMap = new Map();
+    let autoid = 1;
+
+    let v = parseInt(prompt("Enter initial number of students:"));
+    for (let i = 0; i < v; i++) {
+      const name = prompt(Enter name for student ${i + 1});
+      const age = parseInt(prompt(Enter age for student ${i + 1}));
+      const grade = prompt(Enter grade for student ${i + 1});
+
+      const student = { id: autoid, name, age, grade };
+      studentMap.set(autoid, student);
+      autoid++;
+    }
+
+    function displayAllStudents() {
+      const allDiv = document.getElementById("allStudents");
+      let tableHTML = `
+        <table border="1" cellpadding="10">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Grade</th>
+          </tr>`;
+
+      for (const student of studentMap.values()) {
+        tableHTML += `
+          <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.age}</td>
+            <td>${student.grade}</td>
+          </tr>`;
+      }
+
+      tableHTML += </table>;
+      allDiv.innerHTML = tableHTML;
+    }
+
+    displayAllStudents();
+
+    function searchStudent() {
+      const searchId = parseInt(prompt("Enter student ID to search:"));
+      const resultDiv = document.getElementById("searchResult");
+
+      if (studentMap.has(searchId)) {
+        const student = studentMap.get(searchId);
+        resultDiv.innerHTML = `
+          <h3>Student Found:</h3>
+          <table border="1" cellpadding="10">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Grade</th>
+            </tr>
+            <tr>
+              <td>${student.id}</td>
+              <td>${student.name}</td>
+              <td>${student.age}</td>
+              <td>${student.grade}</td>
+            </tr>
+          </table>
+        `;
+      } else {
+        resultDiv.innerHTML = <p style="color:red;">Student with ID ${searchId} not found.</p>;
+      }
+    }
+
+    function updateStudent() {
+      const updateId = parseInt(prompt("Enter student ID to update:"));
+      if (studentMap.has(updateId)) {
+        const name = prompt("Enter new name:");
+        const age = parseInt(prompt("Enter new age:"));
+        const grade = prompt("Enter new grade:");
+        const updatedStudent = { id: updateId, name, age, grade };
+        studentMap.set(updateId, updatedStudent);
+        alert("Student updated successfully.");
+        displayAllStudents();
+      } else {
+        alert("Student ID not found.");
+      }
+    }
+
+    function deleteStudent() {
+      const deleteId = parseInt(prompt("Enter student ID to delete:"));
+      if (studentMap.has(deleteId)) {
+        studentMap.delete(deleteId);
+        alert("Student deleted successfully.");
+        displayAllStudents();
+      } else {
+        alert("Student ID not found.");
+      }
+    }
+
+    function addStudent() {
+      const name = prompt("Enter name:");
+      const age = parseInt(prompt("Enter age:"));
+      const grade = prompt("Enter grade:");
+      const newStudent = { id: autoid, name, age, grade };
+      studentMap.set(autoid, newStudent);
+      autoid++;
+      alert("New student added.");
+      displayAllStudents();
+    }
+  </script>
+
+</body>
+</html>

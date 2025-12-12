@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Management</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Event Management Services</h1>
+    <p>Your event, our responsibility.</p>
+  </header>
+
+  <section id="booking">
+    <h2>Book an Event</h2>
+    <form id="eventForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <select id="eventType">
+        <option>Wedding</option>
+        <option>Birthday</option>
+        <option>Corporate</option>
+        <option>Others</option>
+      </select>
+      <input type="date" id="date" required />
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <section id="past-events">
+    <h2>Past Events</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p> +91 8888888888</p>
+    <p> events@example.com</p>
+    <p> Hyderabad, India</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Event Management Co.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

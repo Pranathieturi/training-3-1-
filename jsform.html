@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trainee Details</title>
+</head>
+<body>
+  <h2>Create Trainee</h2>
+  <form id="TraineeForm">
+    First Name: <input type="text" id="fname" required><br><br>
+    Last Name: <input type="text" id="lname" required><br><br>
+    Password: <input type="password" id="password" required><br><br>
+    Select Courses:<br>
+    <input type="checkbox" name="course" value="java"> Java<br>
+    <input type="checkbox" name="course" value="Python"> Python<br>
+    <input type="checkbox" name="course" value="Web Development"> Web Development<br>
+    <input type="checkbox" name="course" value="Data Science"> Data Science<br><br>
+    <button type="submit">Create Trainee</button>
+  </form>
+
+  <h3>Trainee Info:</h3>
+  <div id="output"></div>
+  <button id="updatePassBtn" style="display:none;">Update Password</button>
+
+  <script>
+    class Trainee {
+      constructor(firstname, lastname, password, courses, courseCost) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.courses = courses;
+        this.courseCost = courseCost;
+      }
+
+      getName() {
+        return this.firstname + ' ' + this.lastname;
+      }
+
+      updatePassword(newPassword) {
+        this.password = newPassword;
+      }
+
+      getCourseCost() {
+        return this.courseCost;
+      }
+
+      getTraineeDetails() {
+        return `
+          <strong>Name:</strong> ${this.getName()}<br>
+          <strong>Courses:</strong> ${this.courses.join(', ')}<br>
+          <strong>Course Cost:</strong> ₹${this.courseCost}<br>
+          <strong>Password:</strong> ${this.password}
+        `;
+      }
+    }
+
+    const courses = {
+      "java": 5000,
+      "Python": 4500,
+      "Web Development": 6000,
+      "Data Science": 7000
+    };
+
+    let trainee = null;
+
+    document.getElementById('TraineeForm').onsubmit = function(e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById('fname').value;
+      const lastName = document.getElementById('lname').value;
+      const password = document.getElementById('password').value;
+
+      const selectedCourses = Array.from(
+        document.querySelectorAll('input[name="course"]:checked')
+      ).map(cb => cb.value);
+
+      const totalCost = selectedCourses.reduce((sum, c) => sum + courses[c], 0);
+
+      trainee = new Trainee(firstName, lastName, password, selectedCourses, totalCost);
+
+      document.getElementById('output').innerHTML = trainee.getTraineeDetails();
+      document.getElementById('updatePassBtn').style.display = "inline-block";
+    };
+
+    document.getElementById('updatePassBtn').onclick = function () {
+      const newPassword = prompt("Enter new password:");
+      if (newPassword && trainee) {
+        trainee.updatePassword(newPassword);
+        document.getElementById('output').innerHTML = trainee.getTraineeDetails();
+      }
+    };
+  </script>
+</body>
+</html>

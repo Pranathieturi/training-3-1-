@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>City Gallery</title>
+  <style>
+    #header {
+      background-color: rgb(173, 203, 230);
+      color: white;
+      clear: both;
+      text-align: center;
+      padding: 5px;
+    }
+
+    #footer {
+      background-color: rgb(173, 204, 230);
+      color: white;
+      clear: both;
+      text-align: center;
+      padding: 5px;
+    }
+
+    #nav {
+      line-height: 30px;
+      background-color: #eeeeeef4;
+      height: 800px;
+      width: 200px;
+      float: left;
+      padding: 5px;
+    }
+
+    #section {
+      width: 550px;
+      float: left;
+      padding: 20px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="header">
+  <h1>City Gallery</h1>
+</div>
+
+<div id="nav">
+<ul>
+    <li> London </li>
+    <li> Paris </li>
+    <li> Tokyo </li>
+</ul>
+</div>
+
+<div id="section">
+  <h2>LONDON</h2>
+ <img src="C:\Users\prana\OneDrive\Desktop\Training\images\london.jpeg">
+  <p>London is the capital city of England. City in the United Kingdom standing on the River Thames, with a metropolitan area of over 13 million inhabitants.</p>
+  <p>London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
+ </div>
+ 
+  <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        video {
+            position: fixed;
+            top: 40;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            top: 40%;
+            font-size: 2em;
+        }
+    </style>
+
+ <video autoplay muted loop>
+    <source src="C:\Users\prana\OneDrive\Desktop\Training\london vid2.mp4">
+ </video>
+<aside>
+            <h2>Journey Enquiry form</h2>
+            <form>
+                <table border="2">
+                    <tr>
+                    <td> Name</td>
+                    <td><input type="name" name="name"></td>
+                    </tr>
+                    <tr>
+                    <td>Email</td>
+                     <td><input type="Email" name="Email"></td>
+                    </tr>
+                        <tr>
+                    <td>password</td>
+                     <td><input type="password" name="Password"></td>
+                    </tr>
+                    <tr>
+                    <td>Mobile Number</td>
+                     <td><input type="Number" name="Number"></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                    <td>Journey Date</td>
+                     <td><input type="Date" name="Date"></td>
+                    </tr>
+                    <tr>
+                    <td><button type="submit">Submit</button></td>
+                   <td><button type="request">Request</button></td>
+                    </tr>
+                </table>
+            </form>
+        </aside>
+
+<div id="footer">
+  Copyright @W3schools.com
+</div>
+
+</body>
+</html>

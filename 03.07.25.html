@@ -1,0 +1,31 @@
+<html lang="en">
+    <head>
+        <title> Javascript Collections </title>
+    </head>
+    <body>
+        <font color="green" size="5">
+        Set is a ES6 feature - Javascript 2015
+        ES6 fully supportes
+        in all browsers since june 2017
+        </font>
+        <script>
+        var myNames=new myNames();
+        myNames.add("Pranathi");
+        myNames.add("Niyati");
+        myNames.add("Deepthi");
+        myNames.add("Balaji");
+        document.write("Size:"+myNames.size+"<br>");
+        for(const name of myNames){
+            document.write(name+"<br>");
+        }
+        let myFaculties = new Set(['Srinivasa','Venu','Nalini']);
+        for (const name of myFaculties) {
+            document.write(name+"<br>");
+        }
+        document.write("type of data:"+typeof myFaculties+"<br>");
+        let result = myFaculties instanceof Set;
+        document.write("instance of :"+result+"<br>");
+        document.write("size:"+myFaculties.size+"<br>");
+    </script>
+    </body>
+</html>

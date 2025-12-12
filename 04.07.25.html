@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            let empMap = new Map([ ["Pranathi",888],["Pranu",666],["Chinnu",686]]);
+
+            empMap.set("Niyati",111);
+            empMap.set("Chintu",444);
+
+            for(let[key,value] of empMap) {
+                document.write(`${key}:${value}<br>`)
+            }
+            document.write(empMap.get("Niyati") + "<br>");
+            document.write(empMap.get("Rukku") + "<br>");
+            empMap.delete('m//,,Pranu');
+        </script>
+    </head>
+</html>

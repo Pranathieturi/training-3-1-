@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Student CRUD</title>
+</head>
+<body>
+
+  <h2>Student Records</h2>
+  <div id="allStudents"></div>
+
+  <button onclick="addStudent()">Add</button>
+  <button onclick="searchStudent()">Search</button>
+  <button onclick="updateStudent()">Update</button>
+  <button onclick="deleteStudent()">Delete</button>
+
+  <div id="result"></div>
+
+  <script>
+    const students = new Map();
+    let id = 1;
+
+    function showAll() {
+      let html = "<table border='1'><tr><th>ID</th><th>Name</th><th>Age</th><th>Grade</th></tr>";
+      for (let [key, s] of students) {
+        html += `<tr><td>${key}</td><td>${s.name}</td><td>${s.age}</td><td>${s.grade}</td></tr>`;
+      }
+      html += "</table>";
+      document.getElementById("allStudents").innerHTML = html;
+    }
+
+    function addStudent() {
+      let name = prompt("Enter name:");
+      let age = prompt("Enter age:");
+      let grade = prompt("Enter grade:");
+      if (name && age && grade) {
+        students.set(id, { name, age, grade });
+        id++;
+        showAll();
+      } else {
+        alert("All fields are required!");
+      }
+    }
+
+    function searchStudent() {
+      let searchId = prompt("Enter ID to search:");
+      let s = students.get(parseInt(searchId));
+      document.getElementById("result").innerHTML = s
+        ? `Found: ${s.name}, Age: ${s.age}, Grade: ${s.grade}`
+        : "Student not found.";
+    }
+
+    function updateStudent() {
+      let updateId = prompt("Enter ID to update:");
+      if (students.has(parseInt(updateId))) {
+        let name = prompt("New Name:");
+        let age = prompt("New Age:");
+        let grade = prompt("New Grade:");
+        students.set(parseInt(updateId), { name, age, grade });
+        alert("Updated.");
+        showAll();
+      } else {
+        alert("ID not found.");
+      }
+    }
+
+    function deleteStudent() {
+      let delId = prompt("Enter ID to delete:");
+      if (students.delete(parseInt(delId))) {
+        alert("Deleted.");
+        showAll();
+      } else {
+        alert("ID not found.");
+      }
+    }
+
+    showAll();
+  </script>
+
+</body>
+</html>

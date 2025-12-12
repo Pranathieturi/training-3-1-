@@ -1,0 +1,27 @@
+<html>
+<head>
+   <style>
+      #test {
+         width: 600px;
+         height: 100px;
+         background-color: red;
+      }
+   </style>
+</head>
+<body>
+   <div id = "test"> </div> <br>
+   <button onclick = "handleClick()"> Change Div Color </button>
+   <script>
+      function handleClick(event) {
+         var div = document.getElementById("test");
+         div.style.backgroundColor = "blue";
+      }
+   </script>
+</body>
+</html><html>
+<body>
+   <h2> Click the button to Change its text's color </h2>
+   <button onclick = "this.style.color='red'"> Click Me </button>
+   <div id = "output"> </div>
+</body>
+</html>
